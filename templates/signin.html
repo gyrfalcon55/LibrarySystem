@@ -1,0 +1,74 @@
+{% extends 'home.html' %} {% block searchbar %} {% endblock searchbar %}
+<!---->
+{% block body %}
+<div class="signin">
+  <div class="signin-content">
+    <form method="POST" action="{% url 'signin' %}">
+      {% csrf_token %}
+      <div class="mb-3">
+        <label for="exampleInputName" class="form-label">First Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="exampleInputName"
+          aria-describedby="Name"
+          name="firstname"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputName" class="form-label">Last Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="exampleInputName"
+          aria-describedby="Name"
+          name="lastname"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Email address</label>
+        <input
+          type="email"
+          class="form-control"
+          id="exampleInputEmail1"
+          aria-describedby="emailHelp"
+          name="email"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <div class="input-group">
+          <input
+            type="password"
+            id="password"
+            name="pass1"
+            class="form-control"
+            placeholder="Enter Password"
+          />
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+            id="togglePassword"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-eye-fill"
+              viewBox="0 0 16 16"
+            >
+              <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0" />
+              <path
+                d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</div>
+{% endblock body %}

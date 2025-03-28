@@ -1,0 +1,31 @@
+{% extends 'home.html' %} {% block searchbar %} {% endblock searchbar %}
+<!---->
+{% block body %}
+<div class="login">
+  <div class="login-content">
+    <form method="POST" action="{% url 'login' %}">
+      {% csrf_token %}
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Email ID</label>
+        <input
+          type="text"
+          class="form-control"
+          name="emailid"
+          placeholder="Enter Email ID"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="exampleInputPassword1"
+          name="pass1"
+        />
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</div>
+{% endblock body %}
