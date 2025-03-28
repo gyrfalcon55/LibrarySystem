@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% load static %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Preview</title>
+
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <script
+      type="text/javascript"
+      src="https://www.google.com/books/jsapi.js"
+    ></script>
+
+    <script type="text/javascript">
+      google.books.load();
+
+      function initialize() {
+        var viewer = new google.books.DefaultViewer(
+          document.getElementById("viewerCanvas")
+        );
+        // Use the Volume ID instead of the full preview URL
+        viewer.load("{{ preview_url }}");
+      }
+
+      google.books.setOnLoadCallback(initialize);
+    </script>
+
+    <style>
+      #viewerCanvas {
+        width: 100%;
+        height: 600px;
+        border: 1px solid #ccc;
+      }
+    </style>
+  </head>
+  <body style="background-color: #f8f3d9">
+    <nav
+      class="navbar navbar-expand-lg"
+      style="background-color: #b9b28a; display: flex; justify-content: center"
+    >
+      <h2>
+        <a href="/" style="text-decoration: none; color: inherit">- Go Home</a>
+      </h2>
+    </nav>
+
+    <h2>Book Preview</h2>
+    <div id="viewerCanvas"></div>
+    <!-- Google Books API will load content here -->
+  </body>
+</html>
