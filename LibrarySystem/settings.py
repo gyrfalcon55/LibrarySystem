@@ -75,18 +75,19 @@ ALLOWED_HOSTS = ["HomePage.onrender.com","librarysystem-i164.onrender.com", "127
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+import dj_database_url
 import os
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.getenv('MYSQL_DATABASE', 'your_db_name'),
-        'USER': os.getenv('MYSQL_USER', 'your_db_user'),
-        'PASSWORD': os.getenv('MYSQL_PASSWORD', 'your_db_password'),
-        'HOST': os.getenv('MYSQL_HOST', 'localhost'),
-        'PORT': os.getenv('MYSQL_PORT', '3306'),
-    }
+    'default': dj_database_url.config(
+        default=os.environ.get("DATABASE_URL"),
+        conn_max_age=600,
+        ssl_require=True
+    )
 }
+
+
+
 
 
 
