@@ -71,7 +71,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'LibrarySystem.wsgi.application'
 
-ALLOWED_HOSTS = ["HomePage.onrender.com","librarysystem-i164.onrender.com", "127.0.0.1"]
+ALLOWED_HOSTS = ["HomePage.onrender.com","librarysystem-96py.onrender.com", "127.0.0.1"]
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
@@ -87,6 +87,11 @@ DATABASES = {
 }
 
 
+import dj_database_url
+
+DATABASES = {
+    'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
+}
 
 
 
