@@ -56,24 +56,6 @@ def Signin(request):
     return render(request, 'signin.html')
 
 
-# def Login(request):
-#     if request.method == "POST":
-#         email = request.POST.get('emailid')
-#         pass1 = request.POST.get('pass1')
-
-#         # ✅ Use `username=email` for custom USERNAME_FIELD
-#         user = authenticate(request, username=email, password=pass1)
-
-#         if user is not None:
-#             login(request, user)
-#             messages.success(request, "Login Successful")
-#             return redirect("/")
-#         else:
-#             messages.error(request, "Invalid email/password")
-#             return redirect('/login')
-
-#     return render(request, 'login.html')
-
 from django.contrib.auth import authenticate, login
 import logging
 
@@ -137,34 +119,6 @@ def Subscription(request):
 
 
 # Subscription and Payment Handling
-
-# @login_required
-# def payment_success(request):
-#     order_id = request.GET.get('order_id')
-#     plan = request.GET.get('plan', 'monthly')
-
-#     # Define plan priorities
-#     plan_priority = {
-#         'free': 0,
-#         'monthly': 1,
-#         'yearly': 2,
-#     }
-
-#     if order_id:
-#         profile, created = UserProfile.objects.get_or_create(user=request.user)
-#         current_plan = profile.subscription
-
-#         # Allow upgrade only if the new plan is higher
-#         if plan_priority[plan] > plan_priority[current_plan]:
-#             profile.subscription = plan
-#             profile.save()
-#             messages.success(request, f"Payment successful! {plan.capitalize()} subscription activated.")
-#         else:
-#             messages.info(request, f"You already have a '{current_plan}' plan or a better one. No changes made.")
-#     else:
-#         messages.error(request, "Error: Order ID is missing.")
-
-#     return redirect('/')
 
 from datetime import timedelta, date
 

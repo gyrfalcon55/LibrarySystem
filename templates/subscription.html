@@ -105,6 +105,14 @@
   </div>
 </div>
 <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // You can attach any button click listeners here if needed
+    // Example:
+    document
+      .getElementById("subscribeBtn")
+      .addEventListener("click", () => initiateCheckout("monthly"));
+  });
+
   function initiateCheckout(plan) {
     // Make an AJAX request to create the payment session for the selected plan
     fetch(`/get_session/?plan=${plan}`)
