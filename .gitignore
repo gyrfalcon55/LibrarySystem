@@ -1,0 +1,31 @@
+# Python cache and logs
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.log
+
+# Environment and credential files
+.env
+*.pyc
+
+# SQLite (if used temporarily)
+db.sqlite3
+*.sqlite3
+
+# MySQL dumps
+*.sql
+
+# IDE/editor files
+.vscode/
+.idea/
+*.swp
+
+# Static/media if generated or uploaded
+/media/
+/staticfiles/
+/node_modules/
+
+# System files
+.DS_Store
+Thumbs.db
