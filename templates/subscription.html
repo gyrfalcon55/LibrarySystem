@@ -1,0 +1,141 @@
+{% extends "home.html" %} {% load static %}
+<!---->
+{% block searchbar %}{% endblock %}
+<!---->
+{% block body %}
+<div class="subscription">
+  <div class="subscription-info">
+    <h2>Your Subscription</h2>
+    <p><strong>Current Plan:</strong> {{ current_plan|capfirst }}</p>
+
+    {% if expiry_date %}
+    <p><strong>Valid Until:</strong> {{ expiry_date }}</p>
+    {% else %}
+    <p><strong>Validity:</strong> Unlimited / No expiry</p>
+    {% endif %} {% if current_plan != 'free' %}
+    <form method="post" action="{% url 'cancel_subscription' %}">
+      {% csrf_token %}
+      <button class="button is-danger">Cancel Subscription</button>
+    </form>
+    {% endif %}
+  </div>
+  <!--plan upgrade-->
+
+  <!---->
+  <div class="columns">
+    <ul class="price">
+      <li class="header">Monthly Plan</li>
+      <li class="price-tag" style="background-color: #b9b28a">
+        <b style="font-size: 150%">Rs.69 / Monthly</b>
+      </li>
+      <li>
+        <img src="media/tick-2-svgrepo-com.svg" alt="" />Unlimited Book Searches
+      </li>
+      <li>
+        <img src="media/tick-2-svgrepo-com.svg" alt="" />Save Books to Personal
+        Library
+      </li>
+      <li>
+        <img src="media/tick-2-svgrepo-com.svg" alt="" />Access Full Book
+        Details
+      </li>
+      <li>
+        <img src="media/tick-2-svgrepo-com.svg" alt="" />Early Access to New
+        Features
+      </li>
+      <li>
+        <img src="media/multiply-circle-svgrepo-com.svg" alt="" />Discounted
+        Yearly Price
+      </li>
+      <li>
+        <img src="media/multiply-circle-svgrepo-com.svg" alt="" />Priority Email
+        Support
+      </li>
+      {% if user.is_authenticated and show_monthly %}
+      <li class="grey">
+        <button onclick="initiateCheckout('monthly')" class="button">
+          Pay Monthly
+        </button>
+      </li>
+      {% elif not user.is_authenticated %}
+      <li class="grey"><a href="/signin" class="button">Sign Up</a></li>
+      {% endif %}
+    </ul>
+  </div>
+
+  <!-- yearly box -->
+  <div class="columns">
+    <ul class="price">
+      <li class="header">Yearly Plan</li>
+      <li class="price-tag" style="background-color: #b9b28a">
+        <b style="font-size: 150%"><strike>Rs.839</strike> Rs.739 / Yearly</b>
+      </li>
+      <li>
+        <img src="media\tick-2-svgrepo-com.svg" alt="" />Unlimited Book Searches
+      </li>
+      <li>
+        <img src="media\tick-2-svgrepo-com.svg" alt="" />Save Books to Personal
+        Library
+      </li>
+      <li>
+        <img src="media\tick-2-svgrepo-com.svg" alt="" />Access Full Book
+        Details
+      </li>
+      <li>
+        <img src="media\tick-2-svgrepo-com.svg" alt="" />Early Access to New
+        Features
+      </li>
+      <li>
+        <img src="media\tick-2-svgrepo-com.svg" alt="" />Discounted Yearly Price
+      </li>
+      <li>
+        <img src="media\tick-2-svgrepo-com.svg" alt="" />Priority Email Support
+      </li>
+
+      {% if user.is_authenticated and is_upgradeable %}
+      <li class="grey">
+        <button onclick="initiateCheckout('yearly')" class="button">
+          Pay Yearly
+        </button>
+      </li>
+      {% elif not user.is_authenticated %}
+      <li class="grey"><a href="/signin" class="button">Sign Up</a></li>
+      {% endif %}
+    </ul>
+  </div>
+</div>
+<script>
+  function initiateCheckout(plan) {
+    // Make an AJAX request to create the payment session for the selected plan
+    fetch(`/get_session/?plan=${plan}`)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.paymentSessionId) {
+          const cashfree = Cashfree({ mode: "sandbox" });
+          cashfree.checkout({
+            paymentSessionId: data.paymentSessionId,
+            redirectTarget: "self", // Customize as needed
+          });
+        } else {
+          console.error(
+            "Payment session could not be created.",
+            data.error || "Unknown error"
+          );
+        }
+      })
+      .catch((err) => {
+        console.error("Checkout Error:", err);
+      });
+  }
+</script>
+
+<script src="https://sdk.cashfree.com/js/v3/cashfree.js"></script>
+<script
+  type="module"
+  src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+></script>
+<script
+  nomodule
+  src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+></script>
+{% endblock body %}

@@ -51,7 +51,17 @@
                   {% else %} User Profile {% endif %}
                 </button>
                 <ul class="dropdown-menu" style="background-color: #b9b28a">
+                  <li class="nav-item">
+                    <a class="nav-link" href="\subscription"
+                      ><img
+                        class="nav-icons"
+                        src="media\dollar-circle-list-svgrepo-com.svg"
+                        alt="cart"
+                      />Subcription</a
+                    >
+                  </li>
                   {% if user.is_authenticated %}
+
                   <li class="nav-item">
                     <a class="nav-link" href="\logout"
                       ><img

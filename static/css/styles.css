@@ -146,3 +146,104 @@ body {
 }
 
 
+/* Subscription tables CSS */
+.subscription{
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+}
+.columns {
+  float: left;
+  width: 30.3%;
+  padding: 3%;
+  
+}
+
+/* Style the list */
+.price {
+  list-style-type: none;
+  border: 1px solid #eee;
+  margin: 0;
+  padding: 0;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  border: 2px solid #111;
+}
+
+/* Add shadows on hover */
+.price:hover {
+  box-shadow: 0 40px 86px 50px rgba(0, 0, 0, 0.2)
+}
+
+
+/* Pricing header */
+.price .header {
+  background-color:#504B38;
+  color: white;
+  font-size: 25px;
+}
+
+/* List items */
+.price li {
+  border-bottom: 1px solid #eee;
+  padding: 15px;
+  text-align: center;
+}
+
+.price li img {
+  width: 3vw;
+  height: 3vh;
+}
+
+/* Grey list item */
+.price .grey {
+  background-color:#504B38;
+  font-size: 20px;
+}
+
+/* The "Sign Up" button */
+.button {
+  background-color: #b9b28a;
+  border-radius: 12px;
+  border: none; 
+  color: rgb(0, 0, 0);
+  padding: 10px 25px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  transition: all 0.3s ease;
+}
+
+.button:hover {
+  color: white; /* 👈 Change text color here */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Change the width of the three columns to 100%
+(to stack horizontally on small screens) */
+@media only screen and (max-width: 1000px) {
+  .columns {
+    width: 60%;
+  }
+  .subscription{
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .columns {
+    width: 80%;
+  }
+  .subscription{
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+}
